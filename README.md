@@ -1,6 +1,7 @@
-## PoliLean Reposiotry
+## Which party would ChatGPT vote for in the Dutch 2023 elections?
+Evaluating the political orientation of popular large language models in the Dutch parliamentary elections 2023. that is the goal of this project. we forked the PoliLean Repository and align it to the Stemwijzer voting advice application. 
 
-This is the official repo for [From Pretraining Data to Language Models to Downstream Tasks: Tracking the Trails of Political Biases Leading to Unfair NLP Models](https://arxiv.org/abs/2305.08283) @ ACL 2023.
+PoliLean is the official repo for [From Pretraining Data to Language Models to Downstream Tasks: Tracking the Trails of Political Biases Leading to Unfair NLP Models](https://arxiv.org/abs/2305.08283) @ ACL 2023.
 
 ### Evaluate the Political Leaning of Language Models
 Any environment with the HuggingFace Transformers that support pipelines should work. You might need to additionally install `selenium` for step 3.
