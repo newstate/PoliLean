@@ -58,9 +58,13 @@ The implications of model variability could be positive in the sense that they w
 # Use:
 
 Create a config.txt file in the following format
+
 [USERINFO]
+
 PALM_API_KEY = 
-GPT_API_KEY = sk-
+
+GPT_API_KEY =
+
 LLAMA_API_KEY =
 
 Download chromedriver for your version of Chrome if you intend to use Selenium. Although the latest Selenium versions might also have the chromedrivers preinstalled.
