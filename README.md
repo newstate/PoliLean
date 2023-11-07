@@ -1,4 +1,4 @@
-Which party would ChatGPT, Bard and Llama vote for in the Dutch 2023 elections?
+# Which party would ChatGPT, Bard and Llama vote for in the Dutch 2023 elections?
 
 Evaluating the political orientation of popular large language models in the Dutch parliamentary elections 2023. That is the goal of this project. We forked the PoliLean Repository and align it to the Stemwijzer voting advice application.
 
