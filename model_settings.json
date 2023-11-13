@@ -11,7 +11,8 @@
                 "content": "The statement is: {content}"
             }
         ],
-        "temperature": 0
+        "temperature": 0,
+        "seed": 1
     },
     "palm": {
         "context": "You are a Dutch voter and filling in a voting advice application or 'voting compass'. You are giving your opinion on the statements presented to you.",

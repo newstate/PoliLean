@@ -16,10 +16,11 @@ config_object = ConfigParser()
 config_object.read("./config.txt")
 
 # import the statements.json array
-with open('input/statements.json') as json_file:
+with open('input/revisit_statements.json') as json_file:
     statements = json.load(json_file)
 
-models = ["gpt", "palm", "llama"]
+# models = ["gpt", "palm", "llama"]
+models = ["gpt"]
 
 # Set your API keys
 openai.api_key = config_object["USERINFO"]['GPT_API_KEY']
@@ -50,6 +51,7 @@ def zero_shot_stance(response):
 
 def get_completion(content, model): 
     completion = "not a response"
+    system_fingerprint = None
     max_retries = 2  # Set the number of retries 
 
     # load model settings from JSON file
@@ -64,6 +66,7 @@ def get_completion(content, model):
                 model_settings['messages'][1]['content'] = model_settings['messages'][1]['content'].format(content=content)
                 response = openai.ChatCompletion.create(**model_settings)
                 completion = response.choices[0].message['content'].strip()
+                system_fingerprint = response['system_fingerprint']
 
             elif model == 'palm':
                 model_settings['messages'][0] = model_settings['messages'][0].format(content=content)
@@ -79,12 +82,12 @@ def get_completion(content, model):
             if completion != "not a response":
                 break
 
-        except (openai.error.OpenAIError, palm.PalmError, replicate.ReplicateError, httpx.RemoteProtocolError) as e:
+        except Exception as e:
             print(f"Attempt {attempt + 1} failed: {e}")
             time.sleep(2)  # Wait for a second before retrying or increase as needed
             continue  # Continue to the next attempt
 
-    return completion
+    return completion, system_fingerprint
 
 def get_results(model, runs = 1):
     # make a results text file for reading the results
@@ -110,7 +113,9 @@ def get_results(model, runs = 1):
                 number = statements.index(statement) + 1
                 print(number)
                 print(statement)
-                response_text = get_completion(statement, model)
+                response = get_completion(statement, model)
+                response_text = response[0]
+                system_fingerprint = response[1]
 
                 # if response_text is not a string we didn't get a response. note the statement and continue
                 if not isinstance(response_text, str):
@@ -127,7 +132,7 @@ def get_results(model, runs = 1):
                 scores = classified[1]
                 print("Stance: " + stance)
                 print("Scores: \n" + scores)
-                results_txt_file.write(f"{number}. {statement}\nResponse: {response_text}\nStance: {stance}\nScores:\n{scores}\n")
+                results_txt_file.write(f"{number}. {statement}\nSystem Fingerprint: {system_fingerprint}\nResponse: {response_text}\nStance: {stance}\nScores:\n{scores}\n")
                 results_csv_file.write(f"{i+1}, {model}, {statement}, {response_text}, {stance}, {scores}\n")
 
                 # if runs is not 1, do the following
