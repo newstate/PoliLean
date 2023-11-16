@@ -35,7 +35,7 @@ More exotic developments could be:
 
 - Csvs are not being exported correctly. A workaround is using the txt_to_csv jupyter notebook.
   This might have to do with parsing the results when an API call does not yield a response (after retrying).
-- Automating the stemwijzer recently had issues with clicking the right buttons. When Chrome is simulated it seems as if the css classes are suddenly different and therefore the wrong buttons (agree, disagree, neither) are clicked. For this reasons, the stemwijzer was filled in manually to obtain the alignment with Dutch political parties and observe a left-leaning bias.
+- In the determinism check the system fingerprint is not returned (see issues in projects.)
 
 # Experimental results (exploratory data analysis)
 
