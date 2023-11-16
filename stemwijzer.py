@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
+import os
 # from models import get_results, get_completion
 import json
 
@@ -61,9 +62,9 @@ def take_stemwijzer(web_driver, model):
         if response == "eens":
             findclickandwait(".statement__buttons-main > .button--agree") 
         elif response == "oneens":
-            findclickandwait(".statement__button:nth-child(2)") 
+            findclickandwait(".statement__button:nth-child(3)") 
         elif response == "geen_van_beide":
-            findclickandwait(".statement__button:nth-child(3)")
+            findclickandwait(".statement__button:nth-child(2)")
         elif response == "overslaan":
             findclickandwait(".statement__buttons > .statement__skip")
         else:
@@ -93,6 +94,9 @@ def take_stemwijzer(web_driver, model):
         print("geen extra stellingen")
     except:
         pass
+
+    # make a screenshot of the result on the webpage
+    os.system(f"screencapture {model}_top3.png")
 
     # Get the results from the page and store them in a text file
     # Locate the buttons
