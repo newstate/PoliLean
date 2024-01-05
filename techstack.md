@@ -1,7 +1,8 @@
 <!--
---- Readme.md Snippet without images Start ---
+&lt;--- Readme.md Snippet without images Start ---&gt;
 ## Tech Stack
 newstate/PoliLean_NL is built on the following main stack:
+
 - [Ruby](https://www.ruby-lang.org) – Languages
 - [Python](https://www.python.org) – Languages
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
@@ -13,11 +14,13 @@ newstate/PoliLean_NL is built on the following main stack:
 - [bzip2](https://www.sourceware.org/bzip2/) – Data Compression
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet without images End ---
 
---- Readme.md Snippet with images Start ---
+&lt;--- Readme.md Snippet without images End ---&gt;
+
+&lt;--- Readme.md Snippet with images Start ---&gt;
 ## Tech Stack
 newstate/PoliLean_NL is built on the following main stack:
+
 - <img width='25' height='25' src='https://img.stackshare.io/service/989/ruby.png' alt='Ruby'/> [Ruby](https://www.ruby-lang.org) – Languages
 - <img width='25' height='25' src='https://img.stackshare.io/service/993/pUBY5pVj.png' alt='Python'/> [Python](https://www.python.org) – Languages
 - <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
@@ -29,14 +32,15 @@ newstate/PoliLean_NL is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/21878/default_2fbe3828d97c3a75c0332e56a34f4505c3c32418.png' alt='bzip2'/> [bzip2](https://www.sourceware.org/bzip2/) – Data Compression
 
 Full tech stack [here](/techstack.md)
---- Readme.md Snippet with images End ---
+
+&lt;--- Readme.md Snippet with images End ---&gt;
 -->
 <div align="center">
 
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [newstate/PoliLean_NL](https://github.com/newstate/PoliLean_NL)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|14<br/>Tools used|11/13/23 <br/>Report generated|
+|14<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -170,4 +174,4 @@ Full tech stack [here](/techstack.md)
 <br/>
 <div align='center'>
 
-Generated via [Stack File](https://github.com/apps/stack-file)
+Generated via [Stack File](https://github.com/marketplace/stack-file)
