@@ -1,7 +1,8 @@
 repo_name: newstate/PoliLean_NL
 report_id: 18b9dceec58554d81871982144b9959a
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-13T13:08:41+00:00'
+timestamp: '2024-01-05T08:46:22+00:00'
 requested_by: newstate
 provider: github
 branch: main
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -28,6 +30,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/newstate/PoliLean_NL
   detection_source: Repo Metadata
 - name: Ruby
   description: A dynamic, interpreted, open source programming language with a focus
@@ -38,6 +41,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/989/ruby.png
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -49,6 +53,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/newstate/PoliLean_NL
   detection_source: Repo Metadata
 - name: PyPI
   description: A repository of software for the Python programming language
@@ -58,6 +63,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Hosted Package Repository
   image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -69,6 +75,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Package Managers
   image_url: https://img.stackshare.io/service/12795/5jL6-BA5_400x400.jpeg
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -80,6 +87,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -91,6 +99,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/5559/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -103,6 +112,7 @@ tools:
   category: Application Utilities
   sub_category: Data Science Notebooks
   image_url: https://img.stackshare.io/service/4190/fGBUdNf__400x400.jpg
+  detection_source_url: https://github.com/newstate/PoliLean_NL
   detection_source: Repo Metadata
 - name: NumPy
   description: Fundamental package for scientific computing with Python
@@ -114,7 +124,7 @@ tools:
   category: Libraries
   sub_category: Data Science Tools
   image_url: https://img.stackshare.io/service/2179/default_332f874a2edb2686f578aa6389313efcea1eec41.png
-  detection_source_url: environment.yml
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -127,7 +137,7 @@ tools:
   category: Application Utilities
   sub_category: Machine Learning Tools
   image_url: https://img.stackshare.io/service/8171/YYpjkbVn_400x400.jpg
-  detection_source_url: environment.yml
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-11-05 20:32:00.000000000 Z
@@ -140,6 +150,7 @@ tools:
   category: Application Utilities
   sub_category: Data Transfer
   image_url: https://img.stackshare.io/service/10242/default_10e3fd58c910dc0c4241bc273a7235a0aa4197dd.png
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -151,6 +162,7 @@ tools:
   category: Libraries
   sub_category: Data Compression
   image_url: https://img.stackshare.io/service/21878/default_2fbe3828d97c3a75c0332e56a34f4505c3c32418.png
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-10-30 13:22:46.000000000 Z
@@ -159,6 +171,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/10517/647025.png
+  detection_source_url: https://github.com/newstate/PoliLean_NL/blob/main/environment.yml
   detection_source: environment.yml
   last_updated_by: Gaspard Bos
   last_updated_on: 2023-11-06 21:40:25.000000000 Z
