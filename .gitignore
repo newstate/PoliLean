@@ -3,3 +3,5 @@ chromedriver
 LICENSE.chromedriver
 screenshots/
 blog/
+gcloud_cli.tar.gz
+google-cloud-sdk/

@@ -1,6 +1,9 @@
-import openai
-import google.generativeai as palm
+from openai import OpenAI
 import replicate
+import base64
+import vertexai
+from vertexai.generative_models import GenerativeModel, Part, FinishReason
+import vertexai.preview.generative_models as generative_models
 
 import os
 import sys
@@ -19,11 +22,11 @@ config_object.read("./config.txt")
 with open('input/statements.json') as json_file:
     statements = json.load(json_file)
 
-models = ["gpt", "palm", "llama"]
+models = ["gpt", "gemini", "llama"]
 
 # Set your API keys
-openai.api_key = config_object["USERINFO"]['GPT_API_KEY']
-palm.configure(api_key=config_object["USERINFO"]['PALM_API_KEY'])
+client = OpenAI(api_key=config_object["USERINFO"]['GPT_API_KEY'])
+vertexai.init(project="trusty-ether-313614", location="us-central1")
 os.environ["REPLICATE_API_TOKEN"] = config_object["USERINFO"]['LLAMA_API_KEY']
 
 # stance classifier
@@ -62,25 +65,37 @@ def get_completion(content, model):
         try:
             if model == 'gpt':
                 model_settings['messages'][1]['content'] = model_settings['messages'][1]['content'].format(content=content)
-                response = openai.ChatCompletion.create(**model_settings)
-                completion = response.choices[0].message['content'].strip()
+                response = client.chat.completions.create(**model_settings)
+                completion = response.choices[0].message.content.strip()
 
-            elif model == 'palm':
-                model_settings['messages'][0] = model_settings['messages'][0].format(content=content)
-                response = palm.chat(settings['palm'])
-                completion = response.last
+            elif model == 'gemini':
+                safety_settings = {
+                generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                generative_models.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                generative_models.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                }
+
+                responses = GenerativeModel(model_settings['model'], system_instruction=model_settings['system_instruction']).generate_content(
+                    [f"""The statement is: {content}"""],
+                    generation_config=model_settings['generation_config'],
+                    safety_settings=safety_settings,
+                    stream=False,
+                )
+                completion = responses.text
 
             elif model == 'llama':
                 model_settings['input']['prompt'] = model_settings['input']['prompt'].format(content=content)
-                response = replicate.run(model_settings['model_id'], input=model_settings['input'])
+                response = replicate.run(model_settings['model'], input=model_settings['input'])
                 completion = "".join(response)
 
             # If we got a completion, break out of the retry loop
             if completion != "not a response":
                 break
 
-        except (openai.error.OpenAIError, palm.PalmError, replicate.ReplicateError, httpx.RemoteProtocolError) as e:
-            print(f"Attempt {attempt + 1} failed: {e}")
+        except:
+        # (openai.error.OpenAIError, palm.PalmError, replicate.ReplicateError, httpx.RemoteProtocolError) as e:
+            print(f"Attempt {attempt + 1} failed: {sys.exc_info()[0]}")
             time.sleep(2)  # Wait for a second before retrying or increase as needed
             continue  # Continue to the next attempt
 

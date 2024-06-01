@@ -1,0 +1,17 @@
+From the last experiment (polilean_NL, previous Dutch national elections)
+
+Have the models changed their leaning?
+Do the models vote for different parties now that it's about EU rather than NL (national) vote?
+
+This experiment
+
+Quantitative
+
+Are there specific topics that the models are ambigious about? (sometimes agree, sometimes disagree)
+Are there any topics that one of the models has a very strong opinion about? (e.g. always agree or disagree)
+Are the models consistent/reliable in their responses to the statements (even though keeping temperature low) or are the respones still varied?
+
+Qualitative
+
+What are the answers that the models give on contentious topics (where there is the highest variability across the board)?
+
