@@ -19,10 +19,11 @@ config_object = ConfigParser()
 config_object.read("./config.txt")
 
 # import the statements.json array
-with open('input/statements.json') as json_file:
+with open('input/stellingen.json') as json_file:
     statements = json.load(json_file)
 
 models = ["gpt", "gemini", "llama"]
+context = "Je bent aan het reageren op politieke stellingen." # @Stippes, this is not very consistent of me because it belongs to a config for the models (prompts) essentially
 
 # Set your API keys
 client = OpenAI(api_key=config_object["USERINFO"]['GPT_API_KEY'])
@@ -51,7 +52,7 @@ def zero_shot_stance(response):
     # print("The highest is: " + highest + "\n")
     return highest, scores
 
-def get_completion(content, model): 
+def get_completion(content, model, persona): 
     completion = "not a response"
     max_retries = 2  # Set the number of retries 
 
@@ -65,6 +66,7 @@ def get_completion(content, model):
         try:
             if model == 'gpt':
                 model_settings['messages'][1]['content'] = model_settings['messages'][1]['content'].format(content=content)
+                model_settings['messages'][0]['content'] = model_settings['messages'][0]['content'].format(persona=persona, context=context) # @Stippes, I use this method to overwrite the placeholders for the different parts if the prompt in the models config json 
                 response = client.chat.completions.create(**model_settings)
                 completion = response.choices[0].message.content.strip()
 
@@ -76,8 +78,8 @@ def get_completion(content, model):
                 generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
                 }
 
-                responses = GenerativeModel(model_settings['model'], system_instruction=model_settings['system_instruction']).generate_content(
-                    [f"""The statement is: {content}"""],
+                responses = GenerativeModel(model_settings['model'], system_instruction=model_settings['system_instruction']).generate_content( # @Stippes, this system intstruction needs to be formatted as before
+                    [f"""De stelling is: {content}"""],
                     generation_config=model_settings['generation_config'],
                     safety_settings=safety_settings,
                     stream=False,
@@ -85,7 +87,7 @@ def get_completion(content, model):
                 completion = responses.text
 
             elif model == 'llama':
-                model_settings['input']['prompt'] = model_settings['input']['prompt'].format(content=content)
+                model_settings['input']['prompt'] = model_settings['input']['prompt'].format(content=content) # @Stippes, same here, please check if the model config is formatted with the persona, content/statement(stelling) and context 
                 response = replicate.run(model_settings['model'], input=model_settings['input'])
                 completion = "".join(response)
 
@@ -111,11 +113,11 @@ def get_results(model, runs = 1):
 
     # Write headers to the CSV file only once, not in append mode
     with open(f"{model}_results_of_{runs}.csv", "w") as results_csv_file:
-        results_csv_file.write("run, model, statement, response, stance, agree, disagree, no opinion, none\n")
+        results_csv_file.write("run, model, statement, response, stance, agree, disagree, no opinion, none\n") # @Stippes, this is where I was creating the csv before but you can adjust this to fit your (voting_prompts.)csv structure
 
     with open(f"{model}_results_of_{runs}.csv", "a") as results_csv_file, \
      open(f"{model}_opinions_of_{runs}.json", "a") as json_file, \
-     open(f"{model}_results_of_{runs}.txt", "a") as results_txt_file:
+     open(f"{model}_results_of_{runs}.txt", "a") as results_txt_file: # @Stippes, besides csv I was also saving the runs to text for easier readability. I also remember that there was an issue creating the csv before so the txt is a backup.
 
         for i in range(runs):
             print("Run " + str(i+1) + " of " + str(runs) + f" for model {model}")
@@ -153,7 +155,7 @@ def get_results(model, runs = 1):
                     scores = [score.split(": ") for score in scores]
                     scores = {score[0]: float(score[1]) for score in scores}
 
-                    # during each run, add the scores to the previous scores and calculate the average
+                    # during each run, add the scores to the previous scores and calculate the average # @Stippes, I was calculating the average, so not the highest count (as we discussed before). The json that is created is what I use to run stemwijzer.py and get the stemwijzer results for the models+personas. Naming of the files needs to change now that a persona is part of it.
                     if len(cumulative_scores) == 0:
                         cumulative_scores = scores
                     else:
